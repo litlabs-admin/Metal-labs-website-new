@@ -1,0 +1,254 @@
+.productAgents {
+  width: 100%;
+  padding: 84px 0;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1128px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* === SECTION HEADING === */
+.header {
+  width: 100%;
+  max-width: 804px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.4em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-heading-muted);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3em;
+  color: var(--color-heading);
+}
+
+.subheading {
+  margin: 14px 0 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3em;
+  color: var(--color-heading-muted);
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity;
+}
+
+/* === GROUPED GRIDS === */
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  width: 100%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.groupLabel {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.4em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-heading);
+}
+
+/* Both groups share the same 4-col track so card sizes stay identical;
+   the 3-card Servicing row simply fills 3 of the 4 columns. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+/* === CARD (Elora-style: white card, gradient slides up on hover) === */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1.25;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  will-change: transform, opacity;
+}
+
+/* Gradient layer — next/image fill, hidden below, slides up on hover. */
+.gradient {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: translateY(101%);
+  transition: transform 0.45s cubic-bezier(0.44, 0, 0.56, 1),
+    opacity 0.3s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.cardBody {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.cardName {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.3em;
+  color: var(--color-heading);
+  transition: color 0.3s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+/* Description hidden until hover; dark text since images are light/pastel. */
+.cardDesc {
+  margin: 0;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5em;
+  color: var(--color-text-body);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.3s cubic-bezier(0.44, 0, 0.56, 1),
+    max-height 0.35s cubic-bezier(0.44, 0, 0.56, 1),
+    margin-top 0.35s cubic-bezier(0.44, 0, 0.56, 1),
+    transform 0.3s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+/* === HOVER REVEAL (pointer devices only) === */
+@media (hover: hover) {
+  .card:hover {
+    border-color: transparent;
+  }
+
+  .card:hover .gradient {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card:hover .cardName {
+    color: var(--color-heading);
+  }
+
+  .card:hover .cardDesc {
+    opacity: 1;
+    max-height: 120px;
+    margin-top: 10px;
+    transform: translateY(0);
+  }
+}
+
+/* === TOUCH / NO-HOVER: show name + description statically === */
+@media (hover: none) {
+  .cardDesc {
+    opacity: 1;
+    max-height: 160px;
+    margin-top: 10px;
+    transform: none;
+  }
+}
+
+/* ===== Tablet (768px – 1199px): 3 columns ===== */
+@media (max-width: 1199px) {
+  .productAgents {
+    padding: 72px 0 70px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== Mobile (<= 767px): 2 columns, taller cards ===== */
+@media (max-width: 767px) {
+  .productAgents {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+    gap: 36px;
+  }
+
+  .heading,
+  .subheading {
+    font-size: 20px;
+  }
+
+  .groups {
+    gap: 32px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    aspect-ratio: 1;
+  }
+
+  .cardBody {
+    padding: 14px;
+  }
+
+  .cardName {
+    font-size: 15px;
+  }
+
+  .cardDesc {
+    font-size: 12px;
+  }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .gradient,
+  .cardName,
+  .cardDesc {
+    transition: none;
+  }
+}

@@ -1,0 +1,1131 @@
+.solutions {
+  width: 100%;
+  padding: 84px 0;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1128px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* === SECTION HEADING === */
+.header {
+  width: 100%;
+  max-width: 804px;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3em;
+  color: var(--color-heading);
+}
+
+.subheading {
+  margin: 14px 0 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3em;
+  color: var(--color-heading-muted);
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity;
+}
+
+/* === FAQ TABS (sidebar + cards) === */
+.faqTabs {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  will-change: opacity;
+}
+
+/* === SIDEBAR (sticky — pins while cards scroll) === */
+.sidebar {
+  position: sticky;
+  top: 120px;
+  flex: 1 0 0;
+  max-width: 344px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.groupLabel {
+  margin: 0 0 8px;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.4em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-heading);
+}
+
+.tabLink {
+  display: block;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.35em;
+  color: var(--color-heading);
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity 0.3s cubic-bezier(0.44, 0, 0.56, 1),
+    color 0.3s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.tabLink:hover {
+  opacity: 0.75;
+}
+
+.tabActive {
+  font-weight: 700;
+  opacity: 1;
+  color: var(--color-heading);
+}
+
+/* === CARDS (stacked, scroll normally) === */
+.cards {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 24px;
+  padding: 18px;
+  background-color: var(--color-card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  scroll-margin-top: 120px;
+  min-height: 326px;
+}
+
+.cardText {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 6px 6px 0;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5em;
+  color: var(--color-text-body);
+}
+
+.cardDesc {
+  margin: 0;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6em;
+  color: rgba(53, 53, 53, 0.7);
+}
+
+.cardVisual {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+/* === MOCKUP (shared) === */
+.mockup {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 290px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--color-card-inner);
+}
+
+/* Hidden by default — revealed on card hover */
+.mockupBg {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card:hover .mockupBg {
+  opacity: 1;
+}
+
+.mockupInner {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+/* White sub-card base look */
+.userRow,
+.fileCard,
+.invoiceCard,
+.permBox,
+.chartBox {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Mockup A: user rows --- */
+.userRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.avatar {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar :global(img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0;
+}
+
+.userName {
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-text-body);
+}
+
+.userRole {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(53, 53, 53, 0.7);
+}
+
+/* Checkbox */
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.checkboxOn {
+  background-color: #191919;
+  border-color: #191919;
+}
+
+/* --- Mockup B: file + invoice --- */
+.fileCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+}
+
+.fileIcon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.fileName {
+  flex: 1;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-text-body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fileExt {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: rgba(53, 53, 53, 0.6);
+}
+
+.invoiceCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+}
+
+.invoiceText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.invoiceTitle {
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-text-body);
+}
+
+.invoiceSub {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: rgba(41, 41, 41, 0.6);
+}
+
+.reviewBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 18px;
+  background-color: #191919;
+  color: #ffffff;
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 13px;
+  border-radius: 200px;
+  white-space: nowrap;
+}
+
+/* --- Mockup C: permissions --- */
+.permBox {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+}
+
+.integrationRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background-color: rgb(237, 237, 232);
+  border-radius: 8px;
+}
+
+.integrationIcon {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.permLabel {
+  margin: 0;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  color: rgba(53, 53, 53, 0.6);
+}
+
+.permList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.permItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.permName {
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-text-body);
+}
+
+/* --- Mockup D: chart --- */
+.chartBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 18px;
+  width: 100%;
+}
+
+.chartHead {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.chartBars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  height: 120px;
+}
+
+.barCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex: 1;
+  height: 100%;
+}
+
+.bar {
+  width: 100%;
+  max-width: 22px;
+  border-radius: 6px;
+  background-color: rgb(237, 237, 232);
+}
+
+.barOn {
+  background-color: rgb(25, 25, 25);
+}
+
+.barLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  color: rgba(53, 53, 53, 0.5);
+}
+
+/* ============================================================
+   BESPOKE ILLUSTRATIONS — shared primitives + per-card classes
+   ============================================================ */
+
+/* White sub-card base */
+.subCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.illoRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Live indicator */
+.liveDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1b8a5a;
+  flex-shrink: 0;
+}
+
+.liveTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #1b8a5a;
+  background: rgba(27, 138, 90, 0.1);
+  padding: 4px 9px;
+  border-radius: 200px;
+  flex-shrink: 0;
+}
+
+/* --- 1: Inbound — waveform + status --- */
+.wave {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 38px;
+  padding: 2px 2px 0;
+  overflow: hidden;
+}
+
+.waveBar {
+  width: 4px;
+  height: 100%;
+  border-radius: 2px;
+  background: rgba(25, 25, 25, 0.85);
+  flex-shrink: 0;
+  transform-origin: bottom center;
+}
+
+.statusRow {
+  display: flex;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(53, 53, 53, 0.7);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 6px 12px;
+  border-radius: 200px;
+}
+
+.statusPillDone {
+  color: #1b8a5a;
+  background: rgba(27, 138, 90, 0.12);
+}
+
+.statusPill .checkbox {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: #1b8a5a;
+}
+
+.spinner {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-top-color: rgba(0, 0, 0, 0.5);
+  animation: illoSpin 0.8s linear infinite;
+}
+
+@keyframes illoSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bookedChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #191919;
+  background: #ffffff;
+  padding: 9px 14px;
+  border-radius: 200px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.bookedIcon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.bookedTime {
+  color: rgba(53, 53, 53, 0.5);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+}
+
+/* --- 2: Outbound — dialer --- */
+.dialRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 3px 0;
+}
+
+.dialDot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.18);
+  flex-shrink: 0;
+}
+
+.dialDotOn {
+  background: #1b8a5a;
+}
+
+.dialDotRing {
+  background: #2f6df6;
+}
+
+.dialPing {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid #2f6df6;
+}
+
+.dialName {
+  flex: 1;
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dialState {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  color: rgba(53, 53, 53, 0.55);
+  flex-shrink: 0;
+}
+
+.handoffTag {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1b8a5a;
+  flex-shrink: 0;
+}
+
+/* --- 3: Documents + 6: Payments shared --- */
+.docHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.docCount {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1b8a5a;
+  background: rgba(27, 138, 90, 0.12);
+  padding: 3px 8px;
+  border-radius: 200px;
+}
+
+.docList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.docItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.docName {
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 14px;
+  color: var(--color-text-body);
+}
+
+.progressBar {
+  height: 6px;
+  border-radius: 200px;
+  background: rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  border-radius: 200px;
+  background: #191919;
+}
+
+.channelChips {
+  display: flex;
+  gap: 8px;
+  align-self: flex-start;
+}
+
+.channelChip {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(53, 53, 53, 0.7);
+  background: #ffffff;
+  padding: 6px 12px;
+  border-radius: 200px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+/* --- 4: After-hours — clock + bubbles --- */
+.afterRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.clock {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.clockTick {
+  position: absolute;
+  width: 2px;
+  height: 4px;
+  border-radius: 1px;
+  background: rgba(0, 0, 0, 0.18);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.clockHand {
+  position: absolute;
+  left: calc(50% - 1px);
+  bottom: 50%;
+  width: 2px;
+  height: 15px;
+  background: #191919;
+  border-radius: 2px;
+  transform-origin: bottom center;
+}
+
+.clockHub {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #191919;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.afterText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.badge247 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-body);
+}
+
+/* --- Chat bubbles (4, 5, 9) --- */
+.bubble {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 9px 13px;
+  border-radius: 14px;
+  max-width: 88%;
+}
+
+.bubbleIn {
+  align-self: flex-start;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-text-body);
+  border-bottom-left-radius: 4px;
+}
+
+.bubbleOut {
+  align-self: flex-end;
+  background: #191919;
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+.bubbleTyping {
+  padding: 12px 14px;
+}
+
+.typing {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.typingDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* --- 5: Chat CTA --- */
+.ctaChip {
+  align-self: flex-end;
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #191919;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 8px 14px;
+  border-radius: 200px;
+  cursor: pointer;
+}
+
+/* --- 6: Payments — calendar --- */
+.calGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calCell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  color: rgba(53, 53, 53, 0.6);
+  border-radius: 6px;
+}
+
+.calDue {
+  background: #191919;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.calPing {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  border: 1.5px solid #191919;
+}
+
+.payFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.paidPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1b8a5a;
+  background: #ffffff;
+  padding: 7px 12px;
+  border-radius: 200px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.paidPill .checkbox {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: #1b8a5a;
+}
+
+/* --- 7: Delinquency --- */
+.acctBadge {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 200px;
+  flex-shrink: 0;
+}
+
+.acctBadgeWarn {
+  color: #b4540a;
+  background: rgba(216, 120, 20, 0.14);
+}
+
+.acctBadgeOk {
+  color: #1b8a5a;
+  background: rgba(27, 138, 90, 0.14);
+}
+
+.planLabel {
+  margin: 2px 0 0;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  color: rgba(53, 53, 53, 0.55);
+}
+
+.planSteps {
+  display: flex;
+  gap: 8px;
+}
+
+.planStep {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 0;
+  border-radius: 8px;
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+}
+
+.toggle {
+  width: 32px;
+  height: 18px;
+  border-radius: 200px;
+  background: rgba(0, 0, 0, 0.12);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.toggleKnob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+/* --- 8: Collections --- */
+.recoverAmount {
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--color-text-body);
+  line-height: 1.1;
+}
+
+.shieldChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #1b8a5a;
+  flex-shrink: 0;
+}
+
+/* --- 9: Payoff --- */
+.answerAmount {
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--color-text-body);
+  line-height: 1.1;
+}
+
+.instantChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1b8a5a;
+  background: rgba(27, 138, 90, 0.12);
+  padding: 3px 9px;
+  border-radius: 200px;
+  flex-shrink: 0;
+}
+
+.loanRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.loanGood {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1b8a5a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
+
+/* ===== Tablet (768px – 1199px): horizontal tab strip ===== */
+@media (max-width: 1199px) {
+  .solutions {
+    padding: 72px 0 70px;
+  }
+
+  .faqTabs {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .sidebar {
+    position: static;
+    top: unset;
+    max-width: 100%;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: auto;
+    gap: 24px;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .group {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .groupLabel {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .tabLink {
+    flex-shrink: 0;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .cards {
+    width: 100%;
+  }
+}
+
+/* ===== Mobile (<= 767px): hide sidebar, stack cards ===== */
+@media (max-width: 767px) {
+  .solutions {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+    gap: 36px;
+  }
+
+  .heading,
+  .subheading {
+    font-size: 20px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .card {
+    flex-direction: column;
+    min-height: unset;
+  }
+
+  .cardText {
+    padding: 6px 6px 0;
+  }
+
+  .cardVisual {
+    width: 100%;
+  }
+
+  .mockup {
+    min-height: 200px;
+    height: 200px;
+  }
+
+  .mockupInner {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .subCard {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .recoverAmount,
+  .answerAmount {
+    font-size: 22px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+
+  .cardDesc {
+    font-size: 14px;
+  }
+}

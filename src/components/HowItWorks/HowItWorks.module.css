@@ -1,0 +1,164 @@
+.howItWorks {
+  width: 100%;
+  padding: 84px 0;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1128px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* === SECTION HEADING === */
+.header {
+  width: 100%;
+  max-width: 804px;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3em;
+  color: var(--color-heading);
+}
+
+.subheading {
+  margin: 14px 0 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3em;
+  color: var(--color-heading-muted);
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity;
+}
+
+/* === CARDS === */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+/* Frosted-glass card over a painterly gradient.
+   The 6px padding exposes the gradient as a glowing edge ring; the
+   glass panel frosts the rest so only the edge stays vivid. */
+.card {
+  position: relative;
+  display: flex;
+  border-radius: 16px;
+  padding: 12px;
+  overflow: hidden;
+  min-height: 320px;
+  will-change: transform, opacity;
+}
+
+.cardBg {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+.glass {
+  position: relative;
+  z-index: 1;
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 28px;
+  background-color: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(24px) saturate(1.15);
+  backdrop-filter: blur(24px) saturate(1.15);
+}
+
+.channel {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.4em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-heading);
+}
+
+.cardTitle {
+  margin: 14px 0 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.3em;
+  color: var(--color-heading);
+}
+
+.cardDesc {
+  margin: 12px 0 0;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6em;
+  color: rgba(53, 53, 53, 0.7);
+}
+
+/* ===== Tablet (768px – 1199px): single column ===== */
+@media (max-width: 1199px) {
+  .howItWorks {
+    padding: 72px 0 70px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 260px;
+  }
+}
+
+/* ===== Mobile (<= 767px) ===== */
+@media (max-width: 767px) {
+  .howItWorks {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+    gap: 36px;
+  }
+
+  .heading,
+  .subheading {
+    font-size: 20px;
+  }
+
+  .card {
+    min-height: 220px;
+  }
+
+  .glass {
+    padding: 20px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+
+  .cardDesc {
+    font-size: 14px;
+  }
+}

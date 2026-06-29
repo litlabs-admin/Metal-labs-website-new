@@ -1,0 +1,74 @@
+.problem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 84px 0;
+  background-color: var(--color-white);
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 804px;
+  padding: 0 30px;
+}
+
+.text {
+  width: 100%;
+  text-align: left;
+}
+
+/* Shared type ramp — lead and body share size/weight; only color differs */
+.lead,
+.body {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3em;
+  letter-spacing: 0;
+}
+
+.lead {
+  color: var(--color-heading);
+}
+
+.body {
+  color: var(--color-heading-muted);
+  margin-top: 28px;
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity;
+}
+
+/* ===== Tablet (768px – 1199px) ===== */
+@media (max-width: 1199px) {
+  .problem {
+    padding: 72px 0 70px;
+  }
+}
+
+/* ===== Mobile (<= 767px) ===== */
+@media (max-width: 767px) {
+  .problem {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .lead,
+  .body {
+    font-size: 20px;
+  }
+
+  .body {
+    margin-top: 20px;
+  }
+}
