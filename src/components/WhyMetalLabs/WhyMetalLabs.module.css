@@ -1,0 +1,446 @@
+.why {
+  width: 100%;
+  padding: 84px 0;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1128px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* === SECTION HEADING === */
+.header {
+  width: 100%;
+  max-width: 804px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.4em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-heading-muted);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3em;
+  color: var(--color-heading);
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity;
+}
+
+/* === ASYMMETRIC GRID ===
+   12-col track: Card 1 (7) + Card 2 (5) on row 1, Card 3 full-width on row 2. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+/* 16px padding + outer radius 20px vs inner glass radius 12px = clear 8px ring */
+.card {
+  position: relative;
+  display: flex;
+  border-radius: 20px;
+  padding: 16px;
+  overflow: hidden;
+  min-height: 420px;
+  will-change: transform, opacity;
+  transition: box-shadow 0.45s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.cardWide {
+  grid-column: span 7;
+}
+
+.cardNarrow {
+  grid-column: span 5;
+}
+
+.cardFull {
+  grid-column: span 12;
+  min-height: 300px;
+}
+
+/* Painterly background (all cards). Scales slightly on hover via JS whileHover. */
+.cardBg {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+/* Frosted-glass panel (all cards) */
+.glass {
+  position: relative;
+  z-index: 1;
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border-radius: 12px;
+  padding: 32px;
+  background-color: rgba(255, 255, 255, 0.76);
+  -webkit-backdrop-filter: blur(24px) saturate(1.15);
+  backdrop-filter: blur(24px) saturate(1.15);
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.25em;
+  color: var(--color-heading);
+}
+
+.cardDesc {
+  margin: 12px 0 0;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6em;
+  color: rgba(53, 53, 53, 0.72);
+}
+
+/* === HOVER (pointer devices only) ===
+   Lift is driven by Framer whileHover; only shadow lives here. */
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: 0 20px 48px rgba(44, 24, 11, 0.14);
+  }
+
+  .card:hover .cardBg {
+    transform: scale(1.04);
+  }
+}
+
+/* === WIDGET (shared shell) === */
+.widget {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---- Widget 1: tools merging into one platform ---- */
+.toolStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.toolChip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-body);
+  transition: opacity 0.3s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+/* Strike-through line that appears on hover */
+.toolStrike {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background-color: var(--color-heading-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.toolDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-heading-muted);
+}
+
+.unifiedPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  align-self: flex-start;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.unifiedMark {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+}
+
+.unifiedMark img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* ---- Widget 2: call flow checklist ---- */
+.flowHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flowLabel {
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-heading);
+}
+
+.flowTag {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-dark);
+  background-color: rgba(44, 24, 11, 0.08);
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+
+.flowList {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.flowItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.66);
+  border: 1px solid var(--color-border);
+  will-change: background-color, border-color, transform;
+}
+
+.flowName {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-body);
+}
+
+/* ---- Shared check mark ---- */
+.check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #1b8a5a;
+}
+
+/* ---- Live dot ---- */
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #1b8a5a;
+  box-shadow: 0 0 0 3px rgba(27, 138, 90, 0.18);
+  flex-shrink: 0;
+}
+
+/* === COMPLIANCE WIDGET (light card) === */
+.complianceWidget {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.68);
+  border: 1px solid var(--color-border);
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.complianceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background-color: rgba(44, 24, 11, 0.07);
+  color: var(--color-heading);
+  font-family: var(--font-switzer), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.shield {
+  display: inline-flex;
+  color: var(--color-heading-muted);
+}
+
+.liveTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: auto;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-body);
+}
+
+.logFeed {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.logRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.66);
+  border: 1px solid var(--color-border);
+  will-change: background-color, border-color;
+}
+
+/* Live-entry row: slightly tinted bg */
+.logRowLive {
+  background-color: rgba(27, 138, 90, 0.1);
+  border: 1px solid rgba(27, 138, 90, 0.22);
+  overflow: hidden;
+}
+
+.logTime {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-heading-muted);
+}
+
+.logText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: var(--color-text-body);
+  margin-right: auto;
+}
+
+/* ===== Tablet (768px – 1199px): stack to single column ===== */
+@media (max-width: 1199px) {
+  .why {
+    padding: 72px 0 70px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cardWide,
+  .cardNarrow,
+  .cardFull {
+    grid-column: auto;
+  }
+
+  .card {
+    min-height: 340px;
+  }
+}
+
+/* ===== Mobile (<= 767px) ===== */
+@media (max-width: 767px) {
+  .why {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+    gap: 36px;
+  }
+
+  .heading {
+    font-size: 20px;
+  }
+
+  .card {
+    min-height: 300px;
+    padding: 12px;
+  }
+
+  .glass {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .cardTitle {
+    font-size: 21px;
+  }
+
+  .cardDesc {
+    font-size: 14px;
+  }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .cardBg {
+    transition: none;
+  }
+
+  .toolChip {
+    transition: none;
+  }
+}

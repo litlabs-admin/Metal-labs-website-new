@@ -23,7 +23,9 @@
 
 html,
 body {
-  max-width: 100vw;
+  /* `100%` (not `100vw`) avoids counting the vertical scrollbar width, which
+     can otherwise spill a few px past the viewport on some browsers. */
+  max-width: 100%;
   /* `clip` prevents horizontal scroll WITHOUT creating a scroll container,
      so descendant `position: sticky` keeps working (hidden would break it). */
   overflow-x: clip;

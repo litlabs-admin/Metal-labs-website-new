@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   motion,
   useReducedMotion,
+  useInView,
   useMotionValue,
   useTransform,
   animate as animateValue,
@@ -14,6 +15,22 @@ import styles from "./Solutions.module.css";
 const EASE = [0.44, 0, 0.56, 1] as const;
 const SPRING_EASE = [0.22, 1, 0.36, 1] as const;
 
+/* Shared motion state for an illustration.
+   `loop` (the driver for all `repeat: Infinity` animations) is gated on the
+   card being in view, so off-screen cards stop running their waveforms, pings,
+   typing dots, clocks, etc. With 9 cards stacked this avoids a large amount of
+   constant compositor/main-thread work — especially on mobile. Visuals are
+   unchanged while a card is on screen. The `ref` is attached to the
+   illustration's root via `rootRef`. */
+function useMockupMotion(hovered: boolean) {
+  const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement | null>(null);
+  const inView = useInView(ref, { margin: "200px 0px 200px 0px" });
+  const active = hovered || !!reduce;
+  const loop = !reduce && inView;
+  return { ref, active, loop };
+}
+
 /* ============================================================
    Shared shell — Planar gradient backdrop (hover-reveal, as before)
    + an in-view entrance on the inner content.
@@ -22,14 +39,16 @@ function Illustration({
   bg,
   bgPos,
   children,
+  rootRef,
 }: {
   bg: string;
   bgPos?: string;
   children: React.ReactNode;
+  rootRef?: React.Ref<HTMLDivElement>;
 }) {
   const reduce = useReducedMotion();
   return (
-    <div className={styles.mockup}>
+    <div className={styles.mockup} ref={rootRef}>
       <Image
         src={bg}
         alt=""
@@ -155,11 +174,9 @@ const reveal = (active: boolean, delay = 0) => ({
    1 — Inbound lead qualification
    ============================================================ */
 function Inbound({ hovered }: { hovered: boolean }) {
-  const reduce = useReducedMotion();
-  const active = hovered || !!reduce;
-  const loop = !reduce;
+  const { ref, active, loop } = useMockupMotion(hovered);
   return (
-    <Illustration bg="/solutions/bg-green.png">
+    <Illustration bg="/solutions/bg-green.png" rootRef={ref}>
       <div className={styles.subCard}>
         <div className={styles.illoRow}>
           <span className={styles.avatar}>
@@ -203,16 +220,14 @@ function Inbound({ hovered }: { hovered: boolean }) {
    2 — Outbound lead calling
    ============================================================ */
 function Outbound({ hovered }: { hovered: boolean }) {
-  const reduce = useReducedMotion();
-  const active = hovered || !!reduce;
-  const loop = !reduce;
+  const { ref, active, loop } = useMockupMotion(hovered);
   const rows = [
     { name: "Aged lead · Jan ’23", state: "connected" as const },
     { name: "CRM contact #4821", state: "dialing" as const },
     { name: "Purchased list", state: "queued" as const },
   ];
   return (
-    <Illustration bg="/solutions/bg-blue.png" bgPos="left top">
+    <Illustration bg="/solutions/bg-blue.png" bgPos="left top" rootRef={ref}>
       <div className={styles.subCard}>
         {rows.map((r, i) => {
           const connected = active && r.state === "connected";
@@ -261,9 +276,7 @@ function Outbound({ hovered }: { hovered: boolean }) {
    3 — Document collection
    ============================================================ */
 function Documents({ hovered }: { hovered: boolean }) {
-  const reduce = useReducedMotion();
-  const active = hovered || !!reduce;
-  const loop = !reduce;
+  const { ref, active, loop } = useMockupMotion(hovered);
   const docs = [
     { name: "W-2 form", always: true },
     { name: "Bank statement", always: true },
@@ -272,7 +285,7 @@ function Documents({ hovered }: { hovered: boolean }) {
   ];
   const done = docs.filter((d) => d.always || active).length;
   return (
-    <Illustration bg="/solutions/bg-marble.webp">
+    <Illustration bg="/solutions/bg-marble.webp" rootRef={ref}>
       <div className={styles.subCard}>
         <div className={styles.docHead}>
           <span className={styles.userName}>Documents</span>
@@ -318,11 +331,9 @@ function Documents({ hovered }: { hovered: boolean }) {
    4 — After-hours support
    ============================================================ */
 function AfterHours({ hovered }: { hovered: boolean }) {
-  const reduce = useReducedMotion();
-  const active = hovered || !!reduce;
-  const loop = !reduce;
+  const { ref, active, loop } = useMockupMotion(hovered);
   return (
-    <Illustration bg="/solutions/bg-yellow.png">
+    <Illustration bg="/solutions/bg-yellow.png" rootRef={ref}>
       <div className={styles.afterRow}>
         <div className={styles.clock}>
           <span className={styles.clockTick} style={{ top: 4 }} />
@@ -368,11 +379,9 @@ function AfterHours({ hovered }: { hovered: boolean }) {
    5 — Website chat
    ============================================================ */
 function Chat({ hovered }: { hovered: boolean }) {
-  const reduce = useReducedMotion();
-  const active = hovered || !!reduce;
-  const loop = !reduce;
+  const { ref, active, loop } = useMockupMotion(hovered);
   return (
-    <Illustration bg="/solutions/bg-green.png">
+    <Illustration bg="/solutions/bg-green.png" rootRef={ref}>
       <div className={styles.subCard}>
         <div className={[styles.bubble, styles.bubbleIn].join(" ")}>
           What rates can I get today?
@@ -401,13 +410,11 @@ function Chat({ hovered }: { hovered: boolean }) {
    6 — Payment reminders
    ============================================================ */
 function Payments({ hovered }: { hovered: boolean }) {
-  const reduce = useReducedMotion();
-  const active = hovered || !!reduce;
-  const loop = !reduce;
+  const { ref, active, loop } = useMockupMotion(hovered);
   const cells = Array.from({ length: 21 }, (_, i) => i + 1);
   const due = 12;
   return (
-    <Illustration bg="/solutions/bg-blue.png" bgPos="left top">
+    <Illustration bg="/solutions/bg-blue.png" bgPos="left top" rootRef={ref}>
       <div className={styles.subCard}>
         <div className={styles.docHead}>
           <span className={styles.userName}>Payment due</span>
@@ -461,12 +468,10 @@ function Payments({ hovered }: { hovered: boolean }) {
    7 — Delinquency outreach
    ============================================================ */
 function Delinquency({ hovered }: { hovered: boolean }) {
-  const reduce = useReducedMotion();
-  const active = hovered || !!reduce;
-  const loop = !reduce;
+  const { ref, active, loop } = useMockupMotion(hovered);
   const steps = ["Apr", "May", "Jun"];
   return (
-    <Illustration bg="/solutions/bg-marble.webp">
+    <Illustration bg="/solutions/bg-marble.webp" rootRef={ref}>
       <div className={styles.subCard}>
         <div className={styles.illoRow}>
           <div className={styles.userText}>
@@ -522,13 +527,11 @@ function Delinquency({ hovered }: { hovered: boolean }) {
    8 — Collections
    ============================================================ */
 function Collections({ hovered }: { hovered: boolean }) {
-  const reduce = useReducedMotion();
-  const active = hovered || !!reduce;
-  const loop = !reduce;
+  const { ref, active, loop } = useMockupMotion(hovered);
   const fmt = (n: number) =>
     "$" + Math.round(n).toLocaleString("en-US");
   return (
-    <Illustration bg="/solutions/bg-yellow.png">
+    <Illustration bg="/solutions/bg-yellow.png" rootRef={ref}>
       <div className={styles.subCard}>
         <div className={styles.docHead}>
           <span className={styles.userRole}>Recovered this month</span>
@@ -579,14 +582,12 @@ function Collections({ hovered }: { hovered: boolean }) {
    9 — Payoff and loan inquiries
    ============================================================ */
 function Payoff({ hovered }: { hovered: boolean }) {
-  const reduce = useReducedMotion();
-  const active = hovered || !!reduce;
-  const loop = !reduce;
+  const { ref, active, loop } = useMockupMotion(hovered);
   const fmt = (n: number) =>
     "$" +
     n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   return (
-    <Illustration bg="/solutions/bg-green.png">
+    <Illustration bg="/solutions/bg-green.png" rootRef={ref}>
       <div className={[styles.bubble, styles.bubbleIn, styles.queryBubble].join(" ")}>
         What&apos;s my payoff amount?
       </div>

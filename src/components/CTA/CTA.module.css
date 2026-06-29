@@ -1,0 +1,193 @@
+.cta {
+  width: 100%;
+  padding: 120px 0;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 1304 - 48px gutter = 1256px grid → 11 × 96px tile + 10 × 20px gap (Elora-exact) */
+.container {
+  width: 100%;
+  max-width: 1304px;
+  padding: 0 24px;
+}
+
+/* The stage stacks the tile grid and the centered content on top of it. */
+.stage {
+  position: relative;
+  width: 100%;
+}
+
+/* === SCATTER TILE GRID (Elora: 11 cols, 20px gap, 96px square tiles) === */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.tile {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background-color: #f4f2f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+}
+
+/* Centre-hole cells: occupy the grid track but stay clean white. */
+.tileBlank {
+  aspect-ratio: 1;
+}
+
+/* Tiles that carry a logo. The lift (translateY + scale) is driven by Framer's
+   whileHover to avoid clashing with the inline transform Motion leaves after
+   the entrance animation. */
+.tileLogo {
+  transition: box-shadow 0.4s cubic-bezier(0.44, 0, 0.56, 1),
+    background-color 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+.glyph {
+  display: block;
+  width: 40px;
+  height: 40px;
+  max-width: 56%;
+  max-height: 56%;
+}
+
+@media (hover: hover) {
+  .tileLogo:hover {
+    background-color: var(--color-white);
+    box-shadow: 0 10px 24px rgba(44, 24, 11, 0.1);
+  }
+}
+
+/* === CENTERED CONTENT (sits in the grid hole) ===
+   A soft white backdrop masks any heading overflow onto adjacent tiles. */
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 32px;
+  padding: 24px;
+  pointer-events: none;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  inset: -8%;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 42% 50% at center,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 46%,
+    rgba(255, 255, 255, 0) 74%
+  );
+}
+
+/* Re-enable interaction for the actual controls. */
+.content :is(a, button) {
+  pointer-events: auto;
+}
+
+/* Elora heading: 48px / 600 / line-height 1.2 / letter-spacing -0.04em */
+.heading {
+  margin: 0;
+  max-width: 560px;
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.15em;
+  letter-spacing: -1.5px;
+  color: var(--color-heading);
+  text-wrap: balance;
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ===== Tablet (768px – 1199px) ===== */
+@media (max-width: 1199px) {
+  .cta {
+    padding: 88px 0;
+  }
+
+  .heading {
+    font-size: 38px;
+    letter-spacing: -1px;
+    max-width: 440px;
+  }
+}
+
+/* ===== Mobile (<= 767px) ===== */
+@media (max-width: 767px) {
+  .cta {
+    padding: 64px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .grid {
+    gap: 8px;
+  }
+
+  .glyph {
+    max-width: 64%;
+    max-height: 64%;
+  }
+
+  .heading {
+    font-size: 26px;
+    letter-spacing: -0.6px;
+    max-width: 280px;
+  }
+
+  .content {
+    gap: 22px;
+  }
+
+  .content::before {
+    inset: -30%;
+    background: radial-gradient(
+      ellipse 78% 56% at center,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.98) 52%,
+      rgba(255, 255, 255, 0) 80%
+    );
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .tileLogo {
+    transition: none;
+  }
+}

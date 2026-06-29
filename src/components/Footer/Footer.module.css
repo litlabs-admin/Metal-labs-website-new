@@ -1,0 +1,230 @@
+/* === FOOTER === */
+.footer {
+  width: 100%;
+  background-color: var(--color-white);
+  padding: 8px 24px 0; /* 24px left/right insets the card from page edges */
+}
+
+.card {
+  width: 100%;
+  background-color: var(--color-card-bg);
+  border-radius: 20px; /* all 4 corners — fully floating card */
+  overflow: hidden;    /* clips gradient bar to rounded corners */
+}
+
+/* === GRADIENT ACCENT BAR === */
+.gradientBar {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #4da6a0 0%, #6b8ef5 100%);
+}
+
+.inner {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 72px 48px 80px;
+}
+
+/* === TOP GRID === */
+.top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* === LOGO BLOCK === */
+.logoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoMark {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.logoMark :global(img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logoText {
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  color: var(--color-heading);
+}
+
+/* === LINK COLUMNS === */
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.colHead {
+  font-family: var(--font-switzer), sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-heading-muted);
+  margin: 0;
+}
+
+.colLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.colLink {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5em;
+  color: var(--color-text-body);
+  text-decoration: none;
+  transition: opacity 0.2s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+@media (hover: hover) {
+  .colLink:hover {
+    opacity: 0.5;
+  }
+}
+
+/* === BOTTOM BAR — lives outside the card, on white page bg === */
+.bottomWrap {
+  width: 100%;
+  padding: 28px 0 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.bottomInner {
+  width: 100%;
+  max-width: 1024px;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.copyright {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5em;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* === SOCIAL ICONS === */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+@media (hover: hover) {
+  .socialLink:hover {
+    color: var(--color-heading);
+  }
+}
+
+/* ===== Tablet (768px – 1199px) ===== */
+@media (max-width: 1199px) {
+  .inner {
+    padding: 60px 36px 72px;
+  }
+
+  .top {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 32px;
+  }
+
+  .logoBlock {
+    grid-column: 1 / -1;
+  }
+
+  .bottomInner {
+    padding: 0 36px;
+  }
+}
+
+/* ===== Mobile (<= 767px) ===== */
+@media (max-width: 767px) {
+  .footer {
+    padding: 8px 12px 0;
+  }
+
+  .card {
+    border-radius: 16px;
+  }
+
+  .inner {
+    padding: 48px 24px 60px;
+  }
+
+  .top {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .logoBlock {
+    grid-column: auto;
+  }
+
+  .tagline {
+    max-width: 100%;
+  }
+
+  .bottomWrap {
+    padding: 24px 0 32px;
+  }
+
+  .bottomInner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 24px;
+    gap: 16px;
+  }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .colLink,
+  .socialLink {
+    transition: none;
+  }
+}

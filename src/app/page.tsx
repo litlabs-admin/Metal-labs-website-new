@@ -4,6 +4,9 @@ import Problem from "@/components/Problem/Problem";
 import Solutions from "@/components/Solutions/Solutions";
 import HowItWorks from "@/components/HowItWorks/HowItWorks";
 import ProductAgents from "@/components/ProductAgents/ProductAgents";
+import WhyMetalLabs from "@/components/WhyMetalLabs/WhyMetalLabs";
+import CTA from "@/components/CTA/CTA";
+import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +17,9 @@ export default function Home() {
       <Solutions />
       <HowItWorks />
       <ProductAgents />
+      <WhyMetalLabs />
+      <CTA />
+      <Footer />
     </main>
   );
 }
