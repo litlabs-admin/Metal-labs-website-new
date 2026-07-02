@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import LenisProvider from "@/components/providers/LenisProvider";
@@ -8,6 +8,13 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+// Logotype typeface — used only for the "Metal Labs" navbar wordmark
+const manrope = Manrope({
+  variable: "--font-logo",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 // Planar template heading typeface (Fontshare), self-hosted
@@ -34,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${switzer.variable}`}>
+    <html lang="en" className={`${inter.variable} ${switzer.variable} ${manrope.variable}`}>
       <body>
         <LenisProvider>{children}</LenisProvider>
       </body>

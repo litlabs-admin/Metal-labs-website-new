@@ -43,22 +43,24 @@ export default function Navbar() {
     <>
       <header className={navClass} data-name="Navbar">
         <div className={styles.inner}>
-          {/* Logo */}
-          <a href="#" className={styles.logo} aria-label="MetalLabs home">
-            <span className={styles.logoMark}>
-              <Image src="/brand/sphere.webp" alt="" width={28} height={28} priority />
-            </span>
-            <span className={styles.logoText}>MetalLabs</span>
-          </a>
+          <div className={styles.leftGroup}>
+            {/* Logo */}
+            <a href="#" className={styles.logo} aria-label="Metal Labs home">
+              <span className={styles.logoMark}>
+                <Image src="/brand/metallabs-sphere.png" alt="" width={28} height={28} priority />
+              </span>
+              <span className={styles.logoText}>Metal Labs</span>
+            </a>
 
-          {/* Center nav links */}
-          <ul className={styles.links}>
-            {NAV_LINKS.map((link) => (
-              <li key={link.label}>
-                <a href={link.href} className={styles.link}>{link.label}</a>
-              </li>
-            ))}
-          </ul>
+            {/* Nav links */}
+            <ul className={styles.links}>
+              {NAV_LINKS.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className={styles.link}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Right CTA */}
           <div className={styles.actions}>
